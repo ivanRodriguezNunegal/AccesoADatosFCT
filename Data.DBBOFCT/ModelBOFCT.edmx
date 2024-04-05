@@ -1,0 +1,825 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="BOFCTModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Country">
+          <Key>
+            <PropertyRef Name="CountryID" />
+          </Key>
+          <Property Name="CountryID" Type="int" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" />
+          <Property Name="Alpha2" Type="nvarchar" MaxLength="2" />
+          <Property Name="Alpha3" Type="nvarchar" MaxLength="3" />
+          <Property Name="CountryItxID" Type="int" />
+          <Property Name="ContinentID" Type="int" />
+        </EntityType>
+        <EntityType Name="Employee">
+          <Key>
+            <PropertyRef Name="EmployeeID" />
+          </Key>
+          <Property Name="EmployeeID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" />
+          <Property Name="Surname" Type="nvarchar" MaxLength="250" />
+          <Property Name="ProfileEmployeeID" Type="int" Nullable="false" />
+          <Property Name="BranchID" Type="int" />
+          <Property Name="CountryID" Type="int" Nullable="false" />
+          <Property Name="ContactID" Type="int" />
+          <Property Name="Active" Type="bit" Nullable="false" />
+          <Property Name="StoreNumber" Type="int" />
+          <Property Name="CreationDatetime" Type="datetime" />
+          <Property Name="InactiveDatetime" Type="datetime" />
+          <Property Name="Deleted" Type="bit" Nullable="false" />
+          <Property Name="LocationID" Type="int" />
+          <Property Name="JoinDate" Type="datetime" />
+          <Property Name="GlobalEmployeeID" Type="nvarchar" MaxLength="50" />
+          <Property Name="EMail" Type="nvarchar" MaxLength="50" />
+          <Property Name="MobilePhone" Type="nvarchar" MaxLength="50" />
+          <Property Name="BirthDate" Type="date" />
+          <Property Name="StartDate" Type="date" />
+          <Property Name="EndDate" Type="date" />
+          <Property Name="GlobalProfileID" Type="nvarchar" MaxLength="50" />
+          <Property Name="PassportID" Type="nvarchar" MaxLength="50" />
+          <Property Name="LocalEmployeeID" Type="int" />
+          <Property Name="RequestCard" Type="bit" />
+          <Property Name="DateRequestCard" Type="datetime" />
+          <Property Name="EnterpriseID" Type="int" />
+          <Property Name="PrintedID" Type="nvarchar" MaxLength="50" />
+          <Property Name="OriginID" Type="int" />
+          <Property Name="ManualUpdate" Type="bit" Nullable="false" />
+          <Property Name="ManualTimeStamp" Type="datetime" />
+          <Property Name="ManualBOUserID" Type="int" />
+          <Property Name="LastUpdateDate" Type="datetime" />
+          <Property Name="ManualUpdateReason" Type="nvarchar" MaxLength="250" />
+          <Property Name="HaveAffinity" Type="bit" />
+          <Property Name="StartDateAffinity" Type="datetime" />
+          <Property Name="HaveTemporaryDiscount" Type="bit" />
+          <Property Name="StartDateTemporaryDiscount" Type="datetime" />
+          <Property Name="AllowOwnMaxAmount" Type="bit" />
+          <Property Name="OwnMaxAmount" Type="int" />
+          <Property Name="TypeLocationID" Type="int" />
+          <Property Name="EnumTypeEmployeeID" Type="varchar" MaxLength="3" />
+          <Property Name="CECO" Type="varchar" MaxLength="5" />
+        </EntityType>
+        <EntityType Name="Evento">
+          <Key>
+            <PropertyRef Name="EventoID" />
+          </Key>
+          <Property Name="EventoID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TipoEventoID" Type="int" Nullable="false" />
+          <Property Name="Asunto" Type="nvarchar" MaxLength="250" Nullable="false" />
+          <Property Name="Mensaje" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="FechaCreacion" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Grupo">
+          <Key>
+            <PropertyRef Name="GrupoID" />
+          </Key>
+          <Property Name="GrupoID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nombre" Type="varchar" MaxLength="255" />
+          <Property Name="Descripcion" Type="varchar" MaxLength="255" />
+        </EntityType>
+        <EntityType Name="GrupoUsuario">
+          <Key>
+            <PropertyRef Name="GrupoUsuarioID" />
+          </Key>
+          <Property Name="GrupoUsuarioID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UsuarioID" Type="int" Nullable="false" />
+          <Property Name="GrupoID" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Parametro">
+          <Key>
+            <PropertyRef Name="ParametroID" />
+          </Key>
+          <Property Name="ParametroID" Type="int" Nullable="false" />
+          <Property Name="Nombre" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Descripcion" Type="nvarchar" MaxLength="250" />
+        </EntityType>
+        <EntityType Name="ParametroWidget">
+          <Key>
+            <PropertyRef Name="ParametroWidgetID" />
+          </Key>
+          <Property Name="ParametroWidgetID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ValorDefecto" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="WidgetID" Type="int" Nullable="false" />
+          <Property Name="ParametroID" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ParametroWidget_Grupo">
+          <Key>
+            <PropertyRef Name="ParametroWidgetGrupoID" />
+          </Key>
+          <Property Name="ParametroWidgetGrupoID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ParametroWidgetID" Type="int" Nullable="false" />
+          <Property Name="GrupoID" Type="int" />
+          <Property Name="Valor" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="UsuarioID" Type="int" />
+        </EntityType>
+        <EntityType Name="ProfileEmployee">
+          <Key>
+            <PropertyRef Name="ProfileEmployeeID" />
+          </Key>
+          <Property Name="ProfileEmployeeID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="Description" Type="nvarchar" MaxLength="250" />
+          <Property Name="TypeLocationID" Type="int" />
+          <Property Name="LocalProfileID" Type="int" />
+          <Property Name="CountryID" Type="varchar" MaxLength="4" />
+          <Property Name="OrganizationID" Type="nvarchar" MaxLength="10" />
+          <Property Name="Empresa" Type="nvarchar" MaxLength="10" />
+          <Property Name="HRProfileID" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="TipoEvento">
+          <Key>
+            <PropertyRef Name="TipoEventoID" />
+          </Key>
+          <Property Name="TipoEventoID" Type="int" Nullable="false" />
+          <Property Name="Nombre" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Descripcion" Type="nvarchar" MaxLength="250" />
+        </EntityType>
+        <EntityType Name="Usuario">
+          <Key>
+            <PropertyRef Name="UsuarioID" />
+          </Key>
+          <Property Name="UsuarioID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Login" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Nombre" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Descripcion" Type="varchar" MaxLength="250" />
+          <Property Name="Activo" Type="bit" Nullable="false" />
+          <Property Name="FechaCreacion" Type="datetime" />
+          <Property Name="FechaActualizacion" Type="datetime" />
+          <Property Name="IDEmpleado" Type="int" />
+          <Property Name="GlobalEmployeeID" Type="int" />
+        </EntityType>
+        <Association Name="FK_Employee_Country">
+          <End Role="Country" Type="Self.Country" Multiplicity="1" />
+          <End Role="Employee" Type="Self.Employee" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Country">
+              <PropertyRef Name="CountryID" />
+            </Principal>
+            <Dependent Role="Employee">
+              <PropertyRef Name="CountryID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Employee_ProfileEmployee">
+          <End Role="ProfileEmployee" Type="Self.ProfileEmployee" Multiplicity="1" />
+          <End Role="Employee" Type="Self.Employee" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ProfileEmployee">
+              <PropertyRef Name="ProfileEmployeeID" />
+            </Principal>
+            <Dependent Role="Employee">
+              <PropertyRef Name="ProfileEmployeeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Evento_TipoEvento">
+          <End Role="TipoEvento" Type="Self.TipoEvento" Multiplicity="1" />
+          <End Role="Evento" Type="Self.Evento" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TipoEvento">
+              <PropertyRef Name="TipoEventoID" />
+            </Principal>
+            <Dependent Role="Evento">
+              <PropertyRef Name="TipoEventoID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_GrupoUsuario_Grupo">
+          <End Role="Grupo" Type="Self.Grupo" Multiplicity="1" />
+          <End Role="GrupoUsuario" Type="Self.GrupoUsuario" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Grupo">
+              <PropertyRef Name="GrupoID" />
+            </Principal>
+            <Dependent Role="GrupoUsuario">
+              <PropertyRef Name="GrupoID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_GrupoUsuario_Usuario">
+          <End Role="Usuario" Type="Self.Usuario" Multiplicity="1" />
+          <End Role="GrupoUsuario" Type="Self.GrupoUsuario" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuario">
+              <PropertyRef Name="UsuarioID" />
+            </Principal>
+            <Dependent Role="GrupoUsuario">
+              <PropertyRef Name="UsuarioID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ParametroWidget_Grupo_Grupo">
+          <End Role="Grupo" Type="Self.Grupo" Multiplicity="0..1" />
+          <End Role="ParametroWidget_Grupo" Type="Self.ParametroWidget_Grupo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Grupo">
+              <PropertyRef Name="GrupoID" />
+            </Principal>
+            <Dependent Role="ParametroWidget_Grupo">
+              <PropertyRef Name="GrupoID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ParametroWidget_Grupo_ParametroWidget">
+          <End Role="ParametroWidget" Type="Self.ParametroWidget" Multiplicity="1" />
+          <End Role="ParametroWidget_Grupo" Type="Self.ParametroWidget_Grupo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ParametroWidget">
+              <PropertyRef Name="ParametroWidgetID" />
+            </Principal>
+            <Dependent Role="ParametroWidget_Grupo">
+              <PropertyRef Name="ParametroWidgetID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ParametroWidget_Grupo_Usuario">
+          <End Role="Usuario" Type="Self.Usuario" Multiplicity="0..1" />
+          <End Role="ParametroWidget_Grupo" Type="Self.ParametroWidget_Grupo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuario">
+              <PropertyRef Name="UsuarioID" />
+            </Principal>
+            <Dependent Role="ParametroWidget_Grupo">
+              <PropertyRef Name="UsuarioID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ParametroWidget_Parametros">
+          <End Role="Parametro" Type="Self.Parametro" Multiplicity="1" />
+          <End Role="ParametroWidget" Type="Self.ParametroWidget" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Parametro">
+              <PropertyRef Name="ParametroID" />
+            </Principal>
+            <Dependent Role="ParametroWidget">
+              <PropertyRef Name="ParametroID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="BOFCTModelStoreContainer">
+          <EntitySet Name="Country" EntityType="Self.Country" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Employee" EntityType="Self.Employee" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Evento" EntityType="Self.Evento" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Grupo" EntityType="Self.Grupo" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="GrupoUsuario" EntityType="Self.GrupoUsuario" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Parametro" EntityType="Self.Parametro" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ParametroWidget" EntityType="Self.ParametroWidget" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ParametroWidget_Grupo" EntityType="Self.ParametroWidget_Grupo" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ProfileEmployee" EntityType="Self.ProfileEmployee" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TipoEvento" EntityType="Self.TipoEvento" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Usuario" EntityType="Self.Usuario" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Employee_Country" Association="Self.FK_Employee_Country">
+            <End Role="Country" EntitySet="Country" />
+            <End Role="Employee" EntitySet="Employee" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Employee_ProfileEmployee" Association="Self.FK_Employee_ProfileEmployee">
+            <End Role="ProfileEmployee" EntitySet="ProfileEmployee" />
+            <End Role="Employee" EntitySet="Employee" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Evento_TipoEvento" Association="Self.FK_Evento_TipoEvento">
+            <End Role="TipoEvento" EntitySet="TipoEvento" />
+            <End Role="Evento" EntitySet="Evento" />
+          </AssociationSet>
+          <AssociationSet Name="FK_GrupoUsuario_Grupo" Association="Self.FK_GrupoUsuario_Grupo">
+            <End Role="Grupo" EntitySet="Grupo" />
+            <End Role="GrupoUsuario" EntitySet="GrupoUsuario" />
+          </AssociationSet>
+          <AssociationSet Name="FK_GrupoUsuario_Usuario" Association="Self.FK_GrupoUsuario_Usuario">
+            <End Role="Usuario" EntitySet="Usuario" />
+            <End Role="GrupoUsuario" EntitySet="GrupoUsuario" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ParametroWidget_Grupo_Grupo" Association="Self.FK_ParametroWidget_Grupo_Grupo">
+            <End Role="Grupo" EntitySet="Grupo" />
+            <End Role="ParametroWidget_Grupo" EntitySet="ParametroWidget_Grupo" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ParametroWidget_Grupo_ParametroWidget" Association="Self.FK_ParametroWidget_Grupo_ParametroWidget">
+            <End Role="ParametroWidget" EntitySet="ParametroWidget" />
+            <End Role="ParametroWidget_Grupo" EntitySet="ParametroWidget_Grupo" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ParametroWidget_Grupo_Usuario" Association="Self.FK_ParametroWidget_Grupo_Usuario">
+            <End Role="Usuario" EntitySet="Usuario" />
+            <End Role="ParametroWidget_Grupo" EntitySet="ParametroWidget_Grupo" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ParametroWidget_Parametros" Association="Self.FK_ParametroWidget_Parametros">
+            <End Role="Parametro" EntitySet="Parametro" />
+            <End Role="ParametroWidget" EntitySet="ParametroWidget" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="BOFCTModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Evento">
+          <Key>
+            <PropertyRef Name="EventoID" />
+          </Key>
+          <Property Name="EventoID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TipoEventoID" Type="Int32" Nullable="false" />
+          <Property Name="Asunto" Type="String" MaxLength="250" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Mensaje" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="FechaCreacion" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="TipoEvento" Relationship="Self.FK_Evento_TipoEvento" FromRole="Evento" ToRole="TipoEvento" />
+        </EntityType>
+        <EntityType Name="Grupo">
+          <Key>
+            <PropertyRef Name="GrupoID" />
+          </Key>
+          <Property Name="GrupoID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nombre" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Descripcion" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="ParametroWidget_Grupo" Relationship="Self.FK_ParametroWidget_Grupo_Grupo" FromRole="Grupo" ToRole="ParametroWidget_Grupo" />
+          <NavigationProperty Name="GrupoUsuario" Relationship="BOFCTModel.FK_GrupoUsuario_Grupo" FromRole="Grupo" ToRole="GrupoUsuario" />
+        </EntityType>
+        <EntityType Name="Parametro">
+          <Key>
+            <PropertyRef Name="ParametroID" />
+          </Key>
+          <Property Name="ParametroID" Type="Int32" Nullable="false" />
+          <Property Name="Nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Descripcion" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="ParametroWidget" Relationship="Self.FK_ParametroWidget_Parametros" FromRole="Parametro" ToRole="ParametroWidget" />
+        </EntityType>
+        <EntityType Name="ParametroWidget">
+          <Key>
+            <PropertyRef Name="ParametroWidgetID" />
+          </Key>
+          <Property Name="ParametroWidgetID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ValorDefecto" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="WidgetID" Type="Int32" Nullable="false" />
+          <Property Name="ParametroID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Parametro" Relationship="Self.FK_ParametroWidget_Parametros" FromRole="ParametroWidget" ToRole="Parametro" />
+          <NavigationProperty Name="ParametroWidget_Grupo" Relationship="Self.FK_ParametroWidget_Grupo_ParametroWidget" FromRole="ParametroWidget" ToRole="ParametroWidget_Grupo" />
+        </EntityType>
+        <EntityType Name="ParametroWidget_Grupo">
+          <Key>
+            <PropertyRef Name="ParametroWidgetGrupoID" />
+          </Key>
+          <Property Name="ParametroWidgetGrupoID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ParametroWidgetID" Type="Int32" Nullable="false" />
+          <Property Name="GrupoID" Type="Int32" />
+          <Property Name="Valor" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="UsuarioID" Type="Int32" />
+          <NavigationProperty Name="Grupo" Relationship="Self.FK_ParametroWidget_Grupo_Grupo" FromRole="ParametroWidget_Grupo" ToRole="Grupo" />
+          <NavigationProperty Name="ParametroWidget" Relationship="Self.FK_ParametroWidget_Grupo_ParametroWidget" FromRole="ParametroWidget_Grupo" ToRole="ParametroWidget" />
+          <NavigationProperty Name="Usuario" Relationship="Self.FK_ParametroWidget_Grupo_Usuario" FromRole="ParametroWidget_Grupo" ToRole="Usuario" />
+        </EntityType>
+        <EntityType Name="TipoEvento">
+          <Key>
+            <PropertyRef Name="TipoEventoID" />
+          </Key>
+          <Property Name="TipoEventoID" Type="Int32" Nullable="false" />
+          <Property Name="Nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Descripcion" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Evento" Relationship="Self.FK_Evento_TipoEvento" FromRole="TipoEvento" ToRole="Evento" />
+        </EntityType>
+        <EntityType Name="Usuario">
+          <Key>
+            <PropertyRef Name="UsuarioID" />
+          </Key>
+          <Property Name="UsuarioID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Login" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Descripcion" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="Activo" Type="Boolean" Nullable="false" />
+          <Property Name="FechaCreacion" Type="DateTime" Precision="3" />
+          <Property Name="FechaActualizacion" Type="DateTime" Precision="3" />
+          <Property Name="IDEmpleado" Type="Int32" />
+          <Property Name="GlobalEmployeeID" Type="Int32" />
+          <NavigationProperty Name="ParametroWidget_Grupo" Relationship="Self.FK_ParametroWidget_Grupo_Usuario" FromRole="Usuario" ToRole="ParametroWidget_Grupo" />
+          <NavigationProperty Name="GrupoUsuario" Relationship="BOFCTModel.FK_GrupoUsuario_Usuario" FromRole="Usuario" ToRole="GrupoUsuario" />
+        </EntityType>
+        <Association Name="FK_Evento_TipoEvento">
+          <End Role="TipoEvento" Type="Self.TipoEvento" Multiplicity="1" />
+          <End Role="Evento" Type="Self.Evento" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TipoEvento">
+              <PropertyRef Name="TipoEventoID" />
+            </Principal>
+            <Dependent Role="Evento">
+              <PropertyRef Name="TipoEventoID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ParametroWidget_Grupo_Grupo">
+          <End Role="Grupo" Type="Self.Grupo" Multiplicity="0..1" />
+          <End Role="ParametroWidget_Grupo" Type="Self.ParametroWidget_Grupo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Grupo">
+              <PropertyRef Name="GrupoID" />
+            </Principal>
+            <Dependent Role="ParametroWidget_Grupo">
+              <PropertyRef Name="GrupoID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ParametroWidget_Parametros">
+          <End Role="Parametro" Type="Self.Parametro" Multiplicity="1" />
+          <End Role="ParametroWidget" Type="Self.ParametroWidget" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Parametro">
+              <PropertyRef Name="ParametroID" />
+            </Principal>
+            <Dependent Role="ParametroWidget">
+              <PropertyRef Name="ParametroID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ParametroWidget_Grupo_ParametroWidget">
+          <End Role="ParametroWidget" Type="Self.ParametroWidget" Multiplicity="1" />
+          <End Role="ParametroWidget_Grupo" Type="Self.ParametroWidget_Grupo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ParametroWidget">
+              <PropertyRef Name="ParametroWidgetID" />
+            </Principal>
+            <Dependent Role="ParametroWidget_Grupo">
+              <PropertyRef Name="ParametroWidgetID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ParametroWidget_Grupo_Usuario">
+          <End Role="Usuario" Type="Self.Usuario" Multiplicity="0..1" />
+          <End Role="ParametroWidget_Grupo" Type="Self.ParametroWidget_Grupo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuario">
+              <PropertyRef Name="UsuarioID" />
+            </Principal>
+            <Dependent Role="ParametroWidget_Grupo">
+              <PropertyRef Name="UsuarioID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="BOFCTEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Evento" EntityType="Self.Evento" />
+          <EntitySet Name="Grupo" EntityType="Self.Grupo" />
+          <EntitySet Name="Parametro" EntityType="Self.Parametro" />
+          <EntitySet Name="ParametroWidget" EntityType="Self.ParametroWidget" />
+          <EntitySet Name="ParametroWidget_Grupo" EntityType="Self.ParametroWidget_Grupo" />
+          <EntitySet Name="TipoEvento" EntityType="Self.TipoEvento" />
+          <EntitySet Name="Usuario" EntityType="Self.Usuario" />
+          <AssociationSet Name="FK_Evento_TipoEvento" Association="Self.FK_Evento_TipoEvento">
+            <End Role="TipoEvento" EntitySet="TipoEvento" />
+            <End Role="Evento" EntitySet="Evento" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ParametroWidget_Grupo_Grupo" Association="Self.FK_ParametroWidget_Grupo_Grupo">
+            <End Role="Grupo" EntitySet="Grupo" />
+            <End Role="ParametroWidget_Grupo" EntitySet="ParametroWidget_Grupo" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ParametroWidget_Parametros" Association="Self.FK_ParametroWidget_Parametros">
+            <End Role="Parametro" EntitySet="Parametro" />
+            <End Role="ParametroWidget" EntitySet="ParametroWidget" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ParametroWidget_Grupo_ParametroWidget" Association="Self.FK_ParametroWidget_Grupo_ParametroWidget">
+            <End Role="ParametroWidget" EntitySet="ParametroWidget" />
+            <End Role="ParametroWidget_Grupo" EntitySet="ParametroWidget_Grupo" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ParametroWidget_Grupo_Usuario" Association="Self.FK_ParametroWidget_Grupo_Usuario">
+            <End Role="Usuario" EntitySet="Usuario" />
+            <End Role="ParametroWidget_Grupo" EntitySet="ParametroWidget_Grupo" />
+          </AssociationSet>
+          <EntitySet Name="GrupoUsuario" EntityType="BOFCTModel.GrupoUsuario" />
+          <AssociationSet Name="FK_GrupoUsuario_Grupo" Association="BOFCTModel.FK_GrupoUsuario_Grupo">
+            <End Role="Grupo" EntitySet="Grupo" />
+            <End Role="GrupoUsuario" EntitySet="GrupoUsuario" />
+          </AssociationSet>
+          <AssociationSet Name="FK_GrupoUsuario_Usuario" Association="BOFCTModel.FK_GrupoUsuario_Usuario">
+            <End Role="Usuario" EntitySet="Usuario" />
+            <End Role="GrupoUsuario" EntitySet="GrupoUsuario" />
+          </AssociationSet>
+          <EntitySet Name="Country" EntityType="BOFCTModel.Country" />
+          <EntitySet Name="Employee" EntityType="BOFCTModel.Employee" />
+          <EntitySet Name="ProfileEmployee" EntityType="BOFCTModel.ProfileEmployee" />
+          <AssociationSet Name="FK_Employee_Country" Association="BOFCTModel.FK_Employee_Country">
+            <End Role="Country" EntitySet="Country" />
+            <End Role="Employee" EntitySet="Employee" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Employee_ProfileEmployee" Association="BOFCTModel.FK_Employee_ProfileEmployee">
+            <End Role="ProfileEmployee" EntitySet="ProfileEmployee" />
+            <End Role="Employee" EntitySet="Employee" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="GrupoUsuario">
+          <Key>
+            <PropertyRef Name="GrupoUsuarioID" />
+          </Key>
+          <Property Name="GrupoUsuarioID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UsuarioID" Type="Int32" Nullable="false" />
+          <Property Name="GrupoID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Grupo" Relationship="BOFCTModel.FK_GrupoUsuario_Grupo" FromRole="GrupoUsuario" ToRole="Grupo" />
+          <NavigationProperty Name="Usuario" Relationship="BOFCTModel.FK_GrupoUsuario_Usuario" FromRole="GrupoUsuario" ToRole="Usuario" />
+        </EntityType>
+        <Association Name="FK_GrupoUsuario_Grupo">
+          <End Type="BOFCTModel.Grupo" Role="Grupo" Multiplicity="1" />
+          <End Type="BOFCTModel.GrupoUsuario" Role="GrupoUsuario" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Grupo">
+              <PropertyRef Name="GrupoID" />
+            </Principal>
+            <Dependent Role="GrupoUsuario">
+              <PropertyRef Name="GrupoID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_GrupoUsuario_Usuario">
+          <End Type="BOFCTModel.Usuario" Role="Usuario" Multiplicity="1" />
+          <End Type="BOFCTModel.GrupoUsuario" Role="GrupoUsuario" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuario">
+              <PropertyRef Name="UsuarioID" />
+            </Principal>
+            <Dependent Role="GrupoUsuario">
+              <PropertyRef Name="UsuarioID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Country">
+          <Key>
+            <PropertyRef Name="CountryID" />
+          </Key>
+          <Property Name="CountryID" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Alpha2" Type="String" MaxLength="2" FixedLength="false" Unicode="true" />
+          <Property Name="Alpha3" Type="String" MaxLength="3" FixedLength="false" Unicode="true" />
+          <Property Name="CountryItxID" Type="Int32" />
+          <Property Name="ContinentID" Type="Int32" />
+          <NavigationProperty Name="Employee" Relationship="BOFCTModel.FK_Employee_Country" FromRole="Country" ToRole="Employee" />
+        </EntityType>
+        <EntityType Name="Employee">
+          <Key>
+            <PropertyRef Name="EmployeeID" />
+          </Key>
+          <Property Name="EmployeeID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Surname" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="ProfileEmployeeID" Type="Int32" Nullable="false" />
+          <Property Name="BranchID" Type="Int32" />
+          <Property Name="CountryID" Type="Int32" Nullable="false" />
+          <Property Name="ContactID" Type="Int32" />
+          <Property Name="Active" Type="Boolean" Nullable="false" />
+          <Property Name="StoreNumber" Type="Int32" />
+          <Property Name="CreationDatetime" Type="DateTime" Precision="3" />
+          <Property Name="InactiveDatetime" Type="DateTime" Precision="3" />
+          <Property Name="Deleted" Type="Boolean" Nullable="false" />
+          <Property Name="LocationID" Type="Int32" />
+          <Property Name="JoinDate" Type="DateTime" Precision="3" />
+          <Property Name="GlobalEmployeeID" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="EMail" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="MobilePhone" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="BirthDate" Type="DateTime" Precision="0" />
+          <Property Name="StartDate" Type="DateTime" Precision="0" />
+          <Property Name="EndDate" Type="DateTime" Precision="0" />
+          <Property Name="GlobalProfileID" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="PassportID" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="LocalEmployeeID" Type="Int32" />
+          <Property Name="RequestCard" Type="Boolean" />
+          <Property Name="DateRequestCard" Type="DateTime" Precision="3" />
+          <Property Name="EnterpriseID" Type="Int32" />
+          <Property Name="PrintedID" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="OriginID" Type="Int32" />
+          <Property Name="ManualUpdate" Type="Boolean" Nullable="false" />
+          <Property Name="ManualTimeStamp" Type="DateTime" Precision="3" />
+          <Property Name="ManualBOUserID" Type="Int32" />
+          <Property Name="LastUpdateDate" Type="DateTime" Precision="3" />
+          <Property Name="ManualUpdateReason" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="HaveAffinity" Type="Boolean" />
+          <Property Name="StartDateAffinity" Type="DateTime" Precision="3" />
+          <Property Name="HaveTemporaryDiscount" Type="Boolean" />
+          <Property Name="StartDateTemporaryDiscount" Type="DateTime" Precision="3" />
+          <Property Name="AllowOwnMaxAmount" Type="Boolean" />
+          <Property Name="OwnMaxAmount" Type="Int32" />
+          <Property Name="TypeLocationID" Type="Int32" />
+          <Property Name="EnumTypeEmployeeID" Type="String" MaxLength="3" FixedLength="false" Unicode="false" />
+          <Property Name="CECO" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Country" Relationship="BOFCTModel.FK_Employee_Country" FromRole="Employee" ToRole="Country" />
+          <NavigationProperty Name="ProfileEmployee" Relationship="BOFCTModel.FK_Employee_ProfileEmployee" FromRole="Employee" ToRole="ProfileEmployee" />
+        </EntityType>
+        <EntityType Name="ProfileEmployee">
+          <Key>
+            <PropertyRef Name="ProfileEmployeeID" />
+          </Key>
+          <Property Name="ProfileEmployeeID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Description" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="TypeLocationID" Type="Int32" />
+          <Property Name="LocalProfileID" Type="Int32" />
+          <Property Name="CountryID" Type="String" MaxLength="4" FixedLength="false" Unicode="false" />
+          <Property Name="OrganizationID" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="Empresa" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="HRProfileID" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Employee" Relationship="BOFCTModel.FK_Employee_ProfileEmployee" FromRole="ProfileEmployee" ToRole="Employee" />
+        </EntityType>
+        <Association Name="FK_Employee_Country">
+          <End Type="BOFCTModel.Country" Role="Country" Multiplicity="1" />
+          <End Type="BOFCTModel.Employee" Role="Employee" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Country">
+              <PropertyRef Name="CountryID" />
+            </Principal>
+            <Dependent Role="Employee">
+              <PropertyRef Name="CountryID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Employee_ProfileEmployee">
+          <End Type="BOFCTModel.ProfileEmployee" Role="ProfileEmployee" Multiplicity="1" />
+          <End Type="BOFCTModel.Employee" Role="Employee" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ProfileEmployee">
+              <PropertyRef Name="ProfileEmployeeID" />
+            </Principal>
+            <Dependent Role="Employee">
+              <PropertyRef Name="ProfileEmployeeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="BOFCTModelStoreContainer" CdmEntityContainer="BOFCTEntities">
+          <EntitySetMapping Name="Evento">
+            <EntityTypeMapping TypeName="BOFCTModel.Evento">
+              <MappingFragment StoreEntitySet="Evento">
+                <ScalarProperty Name="EventoID" ColumnName="EventoID" />
+                <ScalarProperty Name="TipoEventoID" ColumnName="TipoEventoID" />
+                <ScalarProperty Name="Asunto" ColumnName="Asunto" />
+                <ScalarProperty Name="Mensaje" ColumnName="Mensaje" />
+                <ScalarProperty Name="FechaCreacion" ColumnName="FechaCreacion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Grupo">
+            <EntityTypeMapping TypeName="BOFCTModel.Grupo">
+              <MappingFragment StoreEntitySet="Grupo">
+                <ScalarProperty Name="GrupoID" ColumnName="GrupoID" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Parametro">
+            <EntityTypeMapping TypeName="BOFCTModel.Parametro">
+              <MappingFragment StoreEntitySet="Parametro">
+                <ScalarProperty Name="ParametroID" ColumnName="ParametroID" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ParametroWidget">
+            <EntityTypeMapping TypeName="BOFCTModel.ParametroWidget">
+              <MappingFragment StoreEntitySet="ParametroWidget">
+                <ScalarProperty Name="ParametroWidgetID" ColumnName="ParametroWidgetID" />
+                <ScalarProperty Name="ValorDefecto" ColumnName="ValorDefecto" />
+                <ScalarProperty Name="WidgetID" ColumnName="WidgetID" />
+                <ScalarProperty Name="ParametroID" ColumnName="ParametroID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ParametroWidget_Grupo">
+            <EntityTypeMapping TypeName="BOFCTModel.ParametroWidget_Grupo">
+              <MappingFragment StoreEntitySet="ParametroWidget_Grupo">
+                <ScalarProperty Name="ParametroWidgetGrupoID" ColumnName="ParametroWidgetGrupoID" />
+                <ScalarProperty Name="ParametroWidgetID" ColumnName="ParametroWidgetID" />
+                <ScalarProperty Name="GrupoID" ColumnName="GrupoID" />
+                <ScalarProperty Name="Valor" ColumnName="Valor" />
+                <ScalarProperty Name="UsuarioID" ColumnName="UsuarioID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TipoEvento">
+            <EntityTypeMapping TypeName="BOFCTModel.TipoEvento">
+              <MappingFragment StoreEntitySet="TipoEvento">
+                <ScalarProperty Name="TipoEventoID" ColumnName="TipoEventoID" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Usuario">
+            <EntityTypeMapping TypeName="BOFCTModel.Usuario">
+              <MappingFragment StoreEntitySet="Usuario">
+                <ScalarProperty Name="UsuarioID" ColumnName="UsuarioID" />
+                <ScalarProperty Name="Login" ColumnName="Login" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+                <ScalarProperty Name="Activo" ColumnName="Activo" />
+                <ScalarProperty Name="FechaCreacion" ColumnName="FechaCreacion" />
+                <ScalarProperty Name="FechaActualizacion" ColumnName="FechaActualizacion" />
+                <ScalarProperty Name="IDEmpleado" ColumnName="IDEmpleado" />
+                <ScalarProperty Name="GlobalEmployeeID" ColumnName="GlobalEmployeeID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="GrupoUsuario">
+            <EntityTypeMapping TypeName="BOFCTModel.GrupoUsuario">
+              <MappingFragment StoreEntitySet="GrupoUsuario">
+                <ScalarProperty Name="GrupoID" ColumnName="GrupoID" />
+                <ScalarProperty Name="UsuarioID" ColumnName="UsuarioID" />
+                <ScalarProperty Name="GrupoUsuarioID" ColumnName="GrupoUsuarioID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Country">
+            <EntityTypeMapping TypeName="BOFCTModel.Country">
+              <MappingFragment StoreEntitySet="Country">
+                <ScalarProperty Name="ContinentID" ColumnName="ContinentID" />
+                <ScalarProperty Name="CountryItxID" ColumnName="CountryItxID" />
+                <ScalarProperty Name="Alpha3" ColumnName="Alpha3" />
+                <ScalarProperty Name="Alpha2" ColumnName="Alpha2" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="CountryID" ColumnName="CountryID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Employee">
+            <EntityTypeMapping TypeName="BOFCTModel.Employee">
+              <MappingFragment StoreEntitySet="Employee">
+                <ScalarProperty Name="CECO" ColumnName="CECO" />
+                <ScalarProperty Name="EnumTypeEmployeeID" ColumnName="EnumTypeEmployeeID" />
+                <ScalarProperty Name="TypeLocationID" ColumnName="TypeLocationID" />
+                <ScalarProperty Name="OwnMaxAmount" ColumnName="OwnMaxAmount" />
+                <ScalarProperty Name="AllowOwnMaxAmount" ColumnName="AllowOwnMaxAmount" />
+                <ScalarProperty Name="StartDateTemporaryDiscount" ColumnName="StartDateTemporaryDiscount" />
+                <ScalarProperty Name="HaveTemporaryDiscount" ColumnName="HaveTemporaryDiscount" />
+                <ScalarProperty Name="StartDateAffinity" ColumnName="StartDateAffinity" />
+                <ScalarProperty Name="HaveAffinity" ColumnName="HaveAffinity" />
+                <ScalarProperty Name="ManualUpdateReason" ColumnName="ManualUpdateReason" />
+                <ScalarProperty Name="LastUpdateDate" ColumnName="LastUpdateDate" />
+                <ScalarProperty Name="ManualBOUserID" ColumnName="ManualBOUserID" />
+                <ScalarProperty Name="ManualTimeStamp" ColumnName="ManualTimeStamp" />
+                <ScalarProperty Name="ManualUpdate" ColumnName="ManualUpdate" />
+                <ScalarProperty Name="OriginID" ColumnName="OriginID" />
+                <ScalarProperty Name="PrintedID" ColumnName="PrintedID" />
+                <ScalarProperty Name="EnterpriseID" ColumnName="EnterpriseID" />
+                <ScalarProperty Name="DateRequestCard" ColumnName="DateRequestCard" />
+                <ScalarProperty Name="RequestCard" ColumnName="RequestCard" />
+                <ScalarProperty Name="LocalEmployeeID" ColumnName="LocalEmployeeID" />
+                <ScalarProperty Name="PassportID" ColumnName="PassportID" />
+                <ScalarProperty Name="GlobalProfileID" ColumnName="GlobalProfileID" />
+                <ScalarProperty Name="EndDate" ColumnName="EndDate" />
+                <ScalarProperty Name="StartDate" ColumnName="StartDate" />
+                <ScalarProperty Name="BirthDate" ColumnName="BirthDate" />
+                <ScalarProperty Name="MobilePhone" ColumnName="MobilePhone" />
+                <ScalarProperty Name="EMail" ColumnName="EMail" />
+                <ScalarProperty Name="GlobalEmployeeID" ColumnName="GlobalEmployeeID" />
+                <ScalarProperty Name="JoinDate" ColumnName="JoinDate" />
+                <ScalarProperty Name="LocationID" ColumnName="LocationID" />
+                <ScalarProperty Name="Deleted" ColumnName="Deleted" />
+                <ScalarProperty Name="InactiveDatetime" ColumnName="InactiveDatetime" />
+                <ScalarProperty Name="CreationDatetime" ColumnName="CreationDatetime" />
+                <ScalarProperty Name="StoreNumber" ColumnName="StoreNumber" />
+                <ScalarProperty Name="Active" ColumnName="Active" />
+                <ScalarProperty Name="ContactID" ColumnName="ContactID" />
+                <ScalarProperty Name="CountryID" ColumnName="CountryID" />
+                <ScalarProperty Name="BranchID" ColumnName="BranchID" />
+                <ScalarProperty Name="ProfileEmployeeID" ColumnName="ProfileEmployeeID" />
+                <ScalarProperty Name="Surname" ColumnName="Surname" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="EmployeeID" ColumnName="EmployeeID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ProfileEmployee">
+            <EntityTypeMapping TypeName="BOFCTModel.ProfileEmployee">
+              <MappingFragment StoreEntitySet="ProfileEmployee">
+                <ScalarProperty Name="HRProfileID" ColumnName="HRProfileID" />
+                <ScalarProperty Name="Empresa" ColumnName="Empresa" />
+                <ScalarProperty Name="OrganizationID" ColumnName="OrganizationID" />
+                <ScalarProperty Name="CountryID" ColumnName="CountryID" />
+                <ScalarProperty Name="LocalProfileID" ColumnName="LocalProfileID" />
+                <ScalarProperty Name="TypeLocationID" ColumnName="TypeLocationID" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="ProfileEmployeeID" ColumnName="ProfileEmployeeID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Ninguno" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
